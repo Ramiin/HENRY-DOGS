@@ -19,13 +19,21 @@ module.exports = (sequelize) => {
       allowNull: false
     },
     weight: {
-      type: DataTypes.NUMBER,
+      type: DataTypes.STRING,
       allowNull: false
     },
     life_span:{
       type: DataTypes.STRING,
       allowNull: true
-    }
+    },
+    image:{
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    onDb : {
+      type: DataTypes.BOOLEAN,
+      defaultValue: true
+  }
 
   });
 };
