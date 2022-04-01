@@ -1,4 +1,5 @@
 const { Dog } = require('../db.js');
+
 module.exports = async function(req, res){
     const image = req.body.image.url;  
     const{
