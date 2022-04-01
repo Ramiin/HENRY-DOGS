@@ -4,5 +4,5 @@ module.exports = async function(req, res) {
 
     const temperamentsDb = await Temperament.findAll()
 
-    res.json(temperamentsDb);
+    res.status(200).json(temperamentsDb);
 }

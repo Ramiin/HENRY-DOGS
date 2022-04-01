@@ -22,7 +22,7 @@ module.exports = async function(req, res) {
         totalDogs.length === 0 ? res.status(404).json({error: 'No se encontraron razas para esta búsqueda.'}) : res.status(200).json(totalDogs)
         
 
-    } else {
+    } else { //Consulta todos los dogs DB & API
         const infoApi = await getDogsApi();
         const infoDb = await getDogsDb();
         const totalDogs = infoApi.concat(infoDb)
