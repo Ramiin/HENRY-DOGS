@@ -14,7 +14,10 @@ a {
   text-decoration: none;
 }
 
+
 /* LANDING PAGE */
+
+
 #landing-page{
   display:flex;
   align-items: center;
@@ -63,11 +66,32 @@ a {
 #landing-button:hover{
   background-color: #ba8707;
 }
+
 /* HEADER */
 
 
 #header{
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: #282c34;
   width: 100%; 
-  height: 100px;
+  height: 80px;
+  overflow: hidden;
+}
+
+#header h1{
+  display:inline;
+  text-shadow: 5px 5px 10px black;
+  margin: 10px 0px;
+  text-align: center;
+  font-family: 'Poiret One', cursive;
+  color: white;
+  font-size: 50px;
+}
+#paw{
+  height: 60px;
+  margin: 0px;
+  margin-left: -20px;
+  filter: invert(100%) drop-shadow(5px 5px 10px black);;
 }
