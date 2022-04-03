@@ -6,16 +6,18 @@ import Home from './components/Home'
 import Details from './components/Details';
 import Create from './components/Create';
 import Nav from './components/Nav';
+import Header from './components/Header';
 
 function App() {
   return (
-    <div>
+    <React.Fragment>
       <Switch>
             <Route exact path="/">
               <LandingPage />
             </Route>
 
             <Route path = "/">
+              <Header />
               <Nav />
             </Route>
       </Switch>
@@ -24,7 +26,7 @@ function App() {
               <Home />              
             </Route>
 
-            <Route exact path ='/details'>
+            <Route exact path ='/details/:id'>
               <Details />
             </Route>
 
@@ -32,7 +34,7 @@ function App() {
               <Create />
             </Route>
         
-    </div>
+    </React.Fragment>
 
   );
 }

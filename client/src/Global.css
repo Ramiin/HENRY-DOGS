@@ -1,38 +1,73 @@
-.App {
-  text-align: center;
+@import url('https://fonts.googleapis.com/css2?family=Poiret+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+html{
+  padding: 0px;
+  margin: 0px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body{
+  padding: inherit;
+  margin: inherit;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+a {
+  text-decoration: none;
 }
 
-.App-header {
+/* LANDING PAGE */
+#landing-page{
+  display:flex;
+  align-items: center;
+  background-image: url('./sources/landing-page.jpg');
   background-color: #282c34;
-  min-height: 100vh;
+  height: 100vh; 
+  background-position: center; 
+  background-repeat: no-repeat; 
+  background-size: cover; 
+}
+
+#welcome-container{
   display: flex;
+  justify-content: center;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  width: 70vh;
+  height: 30vh;
+  background: rgba(255, 255, 255, .2);
+  border-radius: 10px;
+  margin-left: 15vh;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+#welcome-container h1{
+  text-shadow: 5px 5px 10px black;
+  margin: 10px 0px;
+  text-align: center;
+  font-family: 'Poiret One', cursive;
   color: white;
+  font-size: 70px;
 }
 
-.App-link {
-  color: #61dafb;
+#landing-button{
+  text-align: center;
+  font-family: 'Montserrat', sans-serif;
+  color: white;
+  margin: 10px;
+  border-radius: 2px;
+  padding: 10px;
+  background-color: #9a7007;
+  font-size: 25px;
+  transition: 150ms;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+#landing-button:hover{
+  background-color: #ba8707;
+}
+/* HEADER */
+
+
+#header{
+  background-color: #282c34;
+  width: 100%; 
+  height: 100px;
 }
