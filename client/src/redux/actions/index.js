@@ -20,6 +20,14 @@ export const getDog = (id) =>{
     }
 }
 
+export const getTemperaments = () =>{
+    return (dispatch)=> fetch('http://localhost:3001/temperament')
+    .then(data => data.json())
+    .then(data =>{
+        dispatch({type: 'GET_TEMPERAMENTS', payload: data})
+    })
+}
+
 ////////////////////////////////////////////Esta es la misma sintaxis del ejercicio de arriba para obtener las houses pero en version arrow function:
 // export const getHouse = (id) => {
 //     return (dispatch) => {

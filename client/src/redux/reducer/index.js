@@ -1,6 +1,7 @@
 const initialState = {
     dogs: [],
     dog: [],
+    temps: []
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -16,6 +17,14 @@ const rootReducer = (state = initialState, action) => {
                 ...state,
                 dog: action.payload
             }
+        
+        case 'GET_TEMPERAMENTS':
+            return {
+                ...state,
+                temps: action.payload
+            }
+
+
         default:
             return state;
     };
