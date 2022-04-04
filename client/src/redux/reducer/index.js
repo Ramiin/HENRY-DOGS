@@ -23,7 +23,11 @@ const rootReducer = (state = initialState, action) => {
                 ...state,
                 temps: action.payload
             }
-
+        case 'POST_DOG':
+                return {
+                    ...state,
+                    dogs: state.dogs.concat(action.payload)
+                }
 
         default:
             return state;

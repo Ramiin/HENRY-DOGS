@@ -28,6 +28,13 @@ export const getTemperaments = () =>{
     })
 }
 
+export const postDog = (dog) => {
+    return (dispatch) => axios.post('http://localhost:3001/dog', dog)
+    .then(data => {
+        dispatch({type: 'POST_DOG', payload : data})
+    })
+
+}
 ////////////////////////////////////////////Esta es la misma sintaxis del ejercicio de arriba para obtener las houses pero en version arrow function:
 // export const getHouse = (id) => {
 //     return (dispatch) => {
