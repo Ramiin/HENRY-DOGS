@@ -221,6 +221,26 @@ a {
 
 }
 
+/* PAGINADOOOO */
+
+.paginado ul{
+  display: flex;
+  text-decoration: none;
+  list-style-type: none;
+
+}
+.paginado li{
+text-align: center;
+width: 30px;
+margin: 0px 2px;
+padding: 3px 3px;
+text-decoration: none;
+background-color: lightgrey;
+border: 1px solid black;
+border-radius: 5px;
+
+}
+
 /* FORM CSS */
 .form-error{
   margin: 0px;

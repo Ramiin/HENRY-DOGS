@@ -35,6 +35,20 @@ export const postDog = (dog) => {
     })
 
 }
+
+export const copyStateToOrder = () => {
+    return (dispatch) =>  {
+        dispatch({type: 'COPY_STATE_TO_ORDER'})
+    }
+
+}
+
+export const orderByTemmperament = () => {
+    return (dispatch) =>  {
+        dispatch({type: 'ORDER_BY_TEMPERAMENT'})
+    }
+
+}
 ////////////////////////////////////////////Esta es la misma sintaxis del ejercicio de arriba para obtener las houses pero en version arrow function:
 // export const getHouse = (id) => {
 //     return (dispatch) => {

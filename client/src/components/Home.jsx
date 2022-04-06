@@ -1,20 +1,45 @@
-import React, {useEffect} from 'react'
+import React, {useEffect, useState} from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { getTemperaments, getAllDogs } from '../redux/actions';
-import DogCard from './DogCard'
+import { getTemperaments, getAllDogs} from '../redux/actions';
+import DogCard from './DogCard';
+import Pages from './Pages';
 
 export default function Home(){
 
-    let dispatch = useDispatch();
-    let temperaments = useSelector(state => state.temps)
-    let allBreeds = useSelector(state => state.dogs)
 
+
+    let dispatch = useDispatch();
+    let allBreeds = useSelector(state => state.dogs)
+    let temperaments = useSelector(state => state.temps)
+    let [currentPage, setCurrentPage] = useState(1);
+    let [dogsInPage, setElementsInPage] = useState(8);
+    const lastIndex = currentPage*dogsInPage
+    const firstIndex = lastIndex - dogsInPage
+    const currentDogs = allBreeds.slice(firstIndex, lastIndex)
+ 
+    const paginado = (num) => {
+        setCurrentPage(num)
+    }
+ 
     useEffect(()=>{
         dispatch(getTemperaments())
         dispatch(getAllDogs())
+  
     }, [dispatch])
+    
 
-    // let breeds = allBreeds.map(el => el.name)
+   
+
+
+
+
+
+
+
+    function handleSelect(e){
+        console.log(e.target.value)
+
+    }
 
 
     return(
@@ -23,7 +48,7 @@ export default function Home(){
             <div id="searchbar">
                 <label htmlFor="temperaments">Temperamentos: </label>
                 
-                <select name="temperaments">
+                <select name="temperaments" onChange={handleSelect}>
                     <option value='all'> Todos</option>
                     {temperaments?.length>0 && temperaments?.map((el, i) => {
                         return <option key = {i} value={el.name}>{el.name}</option>
@@ -56,11 +81,17 @@ export default function Home(){
                     </form>
                 
             </div>
+            <Pages 
+                allBreeds = {allBreeds.length}
+                dogsInPage = {dogsInPage}
+                paginado ={paginado} />
             </div>
 
-            
-                    <div className="cards-container">
-                    {allBreeds.length>0 ? allBreeds.map((el, i) => <DogCard dog = {el} key ={i}/>) : "Cargando"}
+                    <div className="cards-container"> 
+
+                    {currentDogs?.length>0 ? currentDogs.map((el, i) => <DogCard dog = {el} key ={i}/>) : "Cargando"}
+
+                   
                     
                     </div>
         

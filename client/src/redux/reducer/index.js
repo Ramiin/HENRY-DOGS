@@ -1,7 +1,8 @@
 const initialState = {
     dogs: [],
     dog: [],
-    temps: []
+    temps: [],
+    order: []
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -27,6 +28,16 @@ const rootReducer = (state = initialState, action) => {
                 return {
                     ...state,
                     dogs: state.dogs.concat(action.payload)
+                }
+        case 'COPY_STATE_TO_ORDER':
+                return {
+                    ...state,
+                    order: [...state.dogs]
+                }
+        case 'ORDER_BY_TEMPERAMENT':
+                return {
+                    ...state,
+                    order: state.dogs.concat(action.payload)
                 }
 
         default:
