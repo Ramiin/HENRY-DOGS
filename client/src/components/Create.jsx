@@ -72,6 +72,9 @@ export default function Create(){
         setErrors(prevState => {
             return {...prevState, [e.target.name]: error}
         })
+        setForm(prevState => {
+            return {...prevState, [e.target.name]: e.target.value}
+        })
 
     }
     function addTemperamentButton(){
@@ -111,8 +114,9 @@ export default function Create(){
 
     function handleSubmit(e){
         e.preventDefault();
+        console.log('Nose')
         
-        let tempsToPost = form.temperamentToPost.join(', ')
+        let tempsToPost = form.temperamentToPost
         let {name, minheight, maxheight, minweight, maxweight, yearsmin, yearsmax, image} = form;
         let errorsCount = 0;
         let dataSaved = 0
@@ -176,9 +180,9 @@ export default function Create(){
     return (
         <div>
             
-            <form autoComplete="off" action="" onSubmit={(e)=>{handleSubmit(e)}}>
+            <form autoComplete="off" onSubmit={(e)=>{handleSubmit(e)}}>
                 <label htmlFor="name">Nombre:</label> 
-                <input type="text" name='name' value={form.name} onChange={(e)=>handleForm(e)}/><br />
+                <input type="text" name='name' onChange={(e)=>handleForm(e)} value={form.name} /><br />
                 {errors.name && <p className='form-error'>{errors.name} </p> }
 
                 <label htmlFor="minheight">Altura mínima:</label>

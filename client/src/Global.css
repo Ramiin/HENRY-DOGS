@@ -123,7 +123,6 @@ a {
 
 /* FORM CSS */
 .form-error{
-  display: inline;
   margin: 0px;
   color: red;
   font-size: 12px;
