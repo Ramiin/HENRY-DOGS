@@ -30,7 +30,6 @@ module.exports = async function(req, res) {
         infoDb.forEach(el=>{
 
             if(el.temperaments){
-                console.log(el)
             }
             el.dataValues.temperament = el.dataValues.temperaments.map(el => el.dataValues.name).join(', ')
         });
