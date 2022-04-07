@@ -8,18 +8,17 @@ export default class Pages extends Component{
 
 
 
-        for (let i = 0; i <= Math.ceil(this.props.allBreeds / this.props.dogsInPage); i++) {
+        for (let i = 1; i <= Math.ceil(this.props.allBreeds / this.props.dogsInPage); i++) {
             pageNumbers.push(i)
             
         }
 
-        console.log(pageNumbers)
         return (
            <div className='paginado'>
                <ul>
                    {pageNumbers && pageNumbers.map((el, i) => {
-                       return <li key={i}>
-                                    <a key={i} onClick={()=> this.props.paginado(el)}>{el}</a>
+                       return <li key={i} onClick={()=> this.props.paginado(el)}>
+                                    <a key={i}> {el} </a>
                                 </li>
                    })}
                </ul>

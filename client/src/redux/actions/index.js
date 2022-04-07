@@ -36,16 +36,10 @@ export const postDog = (dog) => {
 
 }
 
-export const copyStateToOrder = () => {
-    return (dispatch) =>  {
-        dispatch({type: 'COPY_STATE_TO_ORDER'})
-    }
 
-}
-
-export const orderByTemmperament = () => {
+export const order = (orders) => {
     return (dispatch) =>  {
-        dispatch({type: 'ORDER_BY_TEMPERAMENT'})
+        dispatch({type: 'ORDER', payload: orders})
     }
 
 }

@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { getTemperaments, getAllDogs} from '../redux/actions';
+import { getTemperaments, getAllDogs, order} from '../redux/actions';
 import DogCard from './DogCard';
 import Pages from './Pages';
 
@@ -13,9 +13,15 @@ export default function Home(){
     let temperaments = useSelector(state => state.temps)
     let [currentPage, setCurrentPage] = useState(1);
     let [dogsInPage, setElementsInPage] = useState(8);
+    let [orders, setOrders] = useState({
+        temperament:'',
+        breed: '',
+        order: ''
+
+    })
     const lastIndex = currentPage*dogsInPage
     const firstIndex = lastIndex - dogsInPage
-    const currentDogs = allBreeds.slice(firstIndex, lastIndex)
+    const currentDogs = allBreeds?.slice(firstIndex, lastIndex)
  
     const paginado = (num) => {
         setCurrentPage(num)
@@ -33,13 +39,25 @@ export default function Home(){
 
 
 
+    function handleSelectAll(e){
 
+        if(e.target.name==='temperaments'){
+            setOrders(prevState =>{
+                return {...prevState, temperament: e.target.value}
+            }) 
+            dispatch(order({...orders, temperament: e.target.value}))
 
+        }
+        if(e.target.name==='breeds'){
+            setOrders({...orders, breed: e.target.value}) 
+            dispatch(order({...orders, breed: e.target.value}))
 
-    function handleSelect(e){
-        console.log(e.target.value)
-
-    }
+        } else if (e.target.name==='order'){
+            setOrders({...orders, order: e.target.value})
+            dispatch(order({...orders, order: e.target.value}))
+        } 
+        
+        }
 
 
     return(
@@ -48,31 +66,31 @@ export default function Home(){
             <div id="searchbar">
                 <label htmlFor="temperaments">Temperamentos: </label>
                 
-                <select name="temperaments" onChange={handleSelect}>
-                    <option value='all'> Todos</option>
+                <select name="temperaments" onChange={handleSelectAll}>
+                    <option value='alltemps'> Todos</option>
                     {temperaments?.length>0 && temperaments?.map((el, i) => {
                         return <option key = {i} value={el.name}>{el.name}</option>
                     })}
                 </select>
 
-                <label htmlFor="breeds">Razas: </label>
+                <label htmlFor="breeds">Origen: </label>
                
-                <select name="breeds">
-                    <option value='all'> Todas</option>
+                <select name="breeds" onChange={handleSelectAll}>
+                    <option value='allbreeds'> Todas</option>
                     <option value='api'>... de la web</option>
                    <option value='community'>... de la comunidad</option>
                     
                 </select>
 
                 <label htmlFor="order">Orden: </label>
-                <select name="order">
-                    <option value='none'> </option>
-                     <option value='asc'>A - Z</option>
-                     <option value='desc'>Z - A</option>
-                     <option value='desc'>Peso min. (- a +)</option>
-                     <option value='desc'>Peso min. (+ a -)</option>
-                     <option value='desc'>Peso max. (- a +)</option>
-                     <option value='desc'>Peso max. (+ a -)</option>
+                <select name="order" onChange={handleSelectAll}>
+                    <option value='none'>Ninguno</option>
+                     <option value='az'>A - Z</option>
+                     <option value='za'>Z - A</option>
+                     <option value='wmin-minmax'>Peso min. (- a +)</option>
+                     <option value='wmin-maxmin'>Peso min. (+ a -)</option>
+                     <option value='wmax-minmax'>Peso max. (- a +)</option>
+                     <option value='wmax-maxmin'>Peso max. (+ a -)</option>
                 </select>
                 <form >
                     <label htmlFor="searching">Buscar: </label>
@@ -82,7 +100,7 @@ export default function Home(){
                 
             </div>
             <Pages 
-                allBreeds = {allBreeds.length}
+                allBreeds = {allBreeds?.length}
                 dogsInPage = {dogsInPage}
                 paginado ={paginado} />
             </div>
