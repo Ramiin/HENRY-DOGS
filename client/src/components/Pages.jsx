@@ -14,11 +14,14 @@ export default class Pages extends Component{
         }
 
         return (
-           <div className='paginado'>
-               <ul>
+           <div className='paginado-container'>
+               <ul className='paginas'>
                    {pageNumbers && pageNumbers.map((el, i) => {
-                       return <li key={i} onClick={()=> this.props.paginado(el)}>
-                                    <a key={i}> {el} </a>
+                       if(this.props.actualPage === i+1) return <li className='numeros-pagina active' key={i} onClick={()=> this.props.paginado(el)}>
+                       <p key={i}> {el} </p>
+                   </li>
+                       return <li className='numeros-pagina' key={i} onClick={()=> this.props.paginado(el)}>
+                                    <p key={i}> {el} </p>
                                 </li>
                    })}
                </ul>

@@ -6,7 +6,7 @@ export default class Nav extends Component{
         return (
             <div id='nav-bar'>
                 <NavLink to = '/home' > Inicio </NavLink>
-                <NavLink to = '/details' > Detalles de raza </NavLink>
+
                 <NavLink to = '/create' > Agregar raza </NavLink>
             </div>
         )

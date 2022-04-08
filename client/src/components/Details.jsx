@@ -17,18 +17,46 @@ export default function Details(){
     let dog = useSelector(state => state.dog)
 
     return (
-        <div>
-         
-            {dog[0] ? <div>
-                Nombre:{dog[0].name} <br />
-                Peso:{dog[0].weight} <br />
-                Altura:{dog[0].height} <br />
-                Longevidad:{dog[0].life_span} <br />
-                Temperamento:{dog[0].temperament} <br />
-                Imagen: <br />
-                <img src={dog[0].image.url} alt="doggie" />                
 
-                </div> : 'Cargando'}
-        </div>
+            <div className='msform'>
+                <div className="details">
+         
+            {dog[0] ? (<React.Fragment>
+
+               
+                    <img src={dog[0].image} alt="doggie" />
+                    <table style={{width:'80%'}}>
+                    <tbody>
+                    <tr>
+                        <td style={{textAlign:'right', fontWeight:'bold'}}>Nombre:</td>
+                        <td style={{textAlign:'left'}}>{dog[0].name}</td>
+                    </tr>
+                    <tr>
+                        <td style={{textAlign:'right', fontWeight:'bold'}}>Peso:</td>
+                        <td style={{textAlign:'left'}}>{dog[0].weight}</td>
+                    </tr>
+                    <tr>
+                        <td style={{textAlign:'right', fontWeight:'bold'}}>Altura:</td>
+                        <td style={{textAlign:'left'}}>{dog[0].height}</td>
+                    </tr>
+                    <tr>
+                        <td style={{textAlign:'right', fontWeight:'bold'}}>Longevidad:</td>
+                        <td style={{textAlign:'left'}}>{dog[0].life_span}</td>
+                    </tr>
+                    <tr>
+                        <td style={{textAlign:'right', fontWeight:'bold'}}>Temperamento:</td>
+                        <td style={{textAlign:'left'}}>{dog[0].temperament}</td>
+                    </tr>
+                    
+                    </tbody>
+                    </table>
+            
+
+                              
+
+                </React.Fragment>) : 'Cargando'}
+
+                </div>
+            </div>
     )
 }

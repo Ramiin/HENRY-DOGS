@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { getTemperaments, getAllDogs, order} from '../redux/actions';
+import { getTemperaments, getAllDogs, order, search} from '../redux/actions';
 import DogCard from './DogCard';
 import Pages from './Pages';
 
@@ -12,16 +12,22 @@ export default function Home(){
     let allBreeds = useSelector(state => state.dogs)
     let temperaments = useSelector(state => state.temps)
     let [currentPage, setCurrentPage] = useState(1);
-    let [dogsInPage, setElementsInPage] = useState(8);
+    // let [dogsInPage, setElementsInPage] = useState(8);
+        let dogsInPage = 8;
     let [orders, setOrders] = useState({
         temperament:'',
         breed: '',
         order: ''
 
     })
+   
+
     const lastIndex = currentPage*dogsInPage
     const firstIndex = lastIndex - dogsInPage
-    const currentDogs = allBreeds?.slice(firstIndex, lastIndex)
+    const currentDogs = function(){
+        if (allBreeds.length===0) return allBreeds;
+        else return allBreeds?.slice(firstIndex, lastIndex)
+    }()
  
     const paginado = (num) => {
         setCurrentPage(num)
@@ -33,11 +39,6 @@ export default function Home(){
   
     }, [dispatch])
     
-
-   
-
-
-
 
     function handleSelectAll(e){
 
@@ -56,7 +57,13 @@ export default function Home(){
             setOrders({...orders, order: e.target.value})
             dispatch(order({...orders, order: e.target.value}))
         } 
-        
+            setCurrentPage(1)
+        }
+
+        function handleSearchSubmit(e){
+            e.preventDefault()
+            dispatch(search(e.target[0].value))
+            setCurrentPage(1)
         }
 
 
@@ -92,7 +99,7 @@ export default function Home(){
                      <option value='wmax-minmax'>Peso max. (- a +)</option>
                      <option value='wmax-maxmin'>Peso max. (+ a -)</option>
                 </select>
-                <form >
+                <form onSubmit={handleSearchSubmit}>
                     <label htmlFor="searching">Buscar: </label>
                     <input type="text" name='searching' />
                     <input type='submit' value='🔍'/>               
@@ -102,7 +109,7 @@ export default function Home(){
             <Pages 
                 allBreeds = {allBreeds?.length}
                 dogsInPage = {dogsInPage}
-                paginado ={paginado} />
+                paginado ={paginado} actualPage={currentPage}/>
             </div>
 
                     <div className="cards-container"> 

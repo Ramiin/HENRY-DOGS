@@ -31,6 +31,11 @@ const rootReducer = (state = initialState, action) => {
                     ...state,
                     dogs: state.dogs.concat(action.payload)
                 }
+        case 'SEARCH':
+             return {
+                ...state,
+                 dogs: action.payload
+                    }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////>>>>>> START>ORDER
         case 'ORDER':
@@ -191,7 +196,7 @@ const rootReducer = (state = initialState, action) => {
                         }
                     }
 
-                    if(breed = 'community'){  /////////////////////////DB
+                    if(breed === 'community'){  /////////////////////////DB
                         if(order==='none' || order === ''){
                             return allDogs.filter(el => el.onDb);
                         }
@@ -819,6 +824,7 @@ const rootReducer = (state = initialState, action) => {
                     dogs: tempFiltered
                 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////7 >>>>>< END ORDER
+
         default:
             return state;
     };

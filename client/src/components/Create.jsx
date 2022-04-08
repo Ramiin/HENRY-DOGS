@@ -62,10 +62,15 @@ export default function Create(){
 
         let error = function(){
             if (e.target.value === '') return 'El campo no debe estar vacío.';
-            else if (e.target.name==='name') return 'El campo debe contener solo letras.';
-            else if (e.target.name==='minheight' || e.target.name==='maxheight' || e.target.name==='minweight' || e.target.name==='maxweight' || e.target.name==='yearsmin'|| e.target.name==='yearsmax') return 'El campo debe debe tener sólo números';
+            else if (e.target.name==='name') return 'El nombre debe contener solo letras.';
+            else if (e.target.name==='minheight') return 'La altura mínima debe debe ser sólo números';
+            else if (e.target.name==='maxheight') return 'La altura máxima debe debe ser sólo números';
+            else if (e.target.name==='minweight') return 'El peso mínimo debe debe ser sólo números';
+            else if (e.target.name==='maxweight') return 'El peso máximo debe debe ser sólo números';
+            else if (e.target.name==='yearsmin') return 'Los años mínimos deben ser sólo números';
+            else if (e.target.name==='yearsmax') return 'Los años máximos deben ser sólo números';
             else if (e.target.name === 'temperament') return 'El temperamento no se encuentra en la lista.'
-            else if (e.target.name === 'image') return 'Este campo debe contener una URL. '
+            else if (e.target.name === 'image') return 'Este campo debe contener una URL válida.'
 
         }()
 
@@ -102,7 +107,7 @@ export default function Create(){
             temperamentsName.includes(e.target.value) ? handleFields(e) : handleErrors(e)
         }
         else if(e.target.name === 'image'){
-            /[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)?/gi.test(e.target.value) ? handleFields(e) : handleErrors(e)
+            /[-a-zA-Z0-9@:%._~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_.~#?&//=]*)?/gi.test(e.target.value) ? handleFields(e) : handleErrors(e)
         }
         else{
             handleFields(e)
@@ -114,7 +119,7 @@ export default function Create(){
 
     function handleSubmit(e){
         e.preventDefault();
-        console.log('Nose')
+
         
         let tempsToPost = form.temperamentToPost
         let {name, minheight, maxheight, minweight, maxweight, yearsmin, yearsmax, image} = form;
@@ -177,59 +182,65 @@ export default function Create(){
 
     }
 
+    function deleteTemp(temperament){
+        let temperaments=  form.temperamentToPost.filter(el => el!==temperament)
+        setForm(prevState=>{
+            return {...prevState, temperamentToPost: temperaments}
+        })
+    }
+
     return (
         <div>
             
-            <form autoComplete="off" onSubmit={(e)=>{handleSubmit(e)}}>
-                <label htmlFor="name">Nombre:</label> 
-                <input type="text" name='name' onChange={(e)=>handleForm(e)} value={form.name} /><br />
+            <form autoComplete="off" className='msform' onSubmit={(e)=>{handleSubmit(e)}}>
+                <fieldset>
+                <h2 className='fs-title'>AGREGAR NUEVA RAZA</h2>
+                <h3 className="fs-subtitle">Rellena todos los campos</h3>
+                <input type="text" placeholder='Nombre' name='name' onChange={(e)=>handleForm(e)} value={form.name} /><br />
                 {errors.name && <p className='form-error'>{errors.name} </p> }
 
-                <label htmlFor="minheight">Altura mínima:</label>
-                <input type="text" name='minheight' value={form.minheight} onChange={handleForm}/><br />
+                
+                <input type="text" className='half' placeholder='Altura mínima' name='minheight' value={form.minheight} onChange={handleForm}/>
+                <span> - </span>
+                <input type="text" className='half' name='maxheight' placeholder='Altura máxima' value={form.maxheight} onChange={handleForm}/>
                 {errors.minheight && <p className='form-error'>{errors.minheight} </p> }
-
-                <label htmlFor="maxheight">Altura máxima:</label>
-                <input type="text" name='maxheight' value={form.maxheight} onChange={handleForm}/><br />
                 {errors.maxheight && <p className='form-error'>{errors.maxheight} </p> }
 
-                <label htmlFor="minweight">Peso mínimo:</label>
-                <input type="text" name='minweight' value={form.minweight} onChange={handleForm}/><br />
-                {errors.minweight && <p className='form-error'>{errors.minweight} </p> }
 
-                <label htmlFor="maxheight">Peso máximo:</label>
-                <input type="text" name='maxweight' value={form.maxweight} onChange={handleForm}/><br />
+                <input type="text" className='half' name='minweight' placeholder='Peso mínimo' value={form.minweight} onChange={handleForm}/>
+                
+                <span> - </span>
+                <input type="text" className='half' name='maxweight' placeholder='Peso máximo' value={form.maxweight} onChange={handleForm}/>
+                {errors.minweight && <p className='form-error'>{errors.minweight} </p> }
                 {errors.maxweight && <p className='form-error'>{errors.maxweight} </p> }
 
-                <label htmlFor="years">Años de vida mínimos:</label>
-                <input type="text" name='yearsmin' value={form.yearsmin} onChange={handleForm}/><br />
+                <input type="text" className='half' name='yearsmin' placeholder='Años de vida mínimos' value={form.yearsmin} onChange={handleForm}/>
+                <span> - </span>
+                <input type="text" className='half' name='yearsmax' placeholder='Años de vida máximos' value={form.yearsmax} onChange={handleForm}/>
                 {errors.yearsmin && <p className='form-error'>{errors.yearsmin} </p> }
-
-                <label htmlFor="years2">Años de vida máximos:</label>
-                <input type="text" name='yearsmax' value={form.yearsmax} onChange={handleForm}/><br />
                 {errors.yearsmax && <p className='form-error'>{errors.yearsmax} </p> }
-
-                <label htmlFor="temperamento">Temperamento:</label>
-                <input id="temperaments" name= 'temperament' list="suggestions" onChange={handleForm} /> <button onClick={()=>addTemperamentButton()}>+</button>
+                <br />
+                <label className='labelfortemp'htmlFor="temperamento"><p>Temperamento:</p></label><br />
+                <input id="temperaments" className='temp-input' name= 'temperament' placeholder='Escribe o selecciona uno o más temperamentos' list="suggestions" onChange={handleForm} /> <button className='temp-button' onClick={()=>addTemperamentButton()}>+</button>
                 {errors.temperament && <p className='form-error'>{errors.temperament} </p> }
+                <div className='temps-to-post'>
                 {form.temperamentToPost?.map(el => {
-                    return <p key={el}>{el}</p>
+                    return <p className='temp-tag' key={el}>{el+'  '}<span name= {el} onClick={()=> deleteTemp(el)}className='delete-temp'>X</span></p>
                 })}
+                </div>
                     <datalist id="suggestions">
                         {allTemperaments && allTemperaments.map((el, i) =>{
                             return <option key = {i} value={el.name} />
                         })}
                     </datalist> <br />
 
-                <label htmlFor="image" onChange={handleForm} value={form.image}>Imagen (URL):</label>
-                <input type="text" name='image' onChange={handleForm} value={form.image}/><br />
+                <input type="text" placeholder='URL de imagen' name='image' onChange={handleForm} value={form.image}/><br />
                 {errors.image && <p className='form-error'>{errors.image} </p> }
             
-                <button type="submit">Agregar </button>
+                <button type="submit" className='action-button'>Agregar </button>
                 {errors.submit && <p className='form-error'>{errors.submit} </p> }
-
+            </fieldset>
         </form>
-
 
 
         </div>
