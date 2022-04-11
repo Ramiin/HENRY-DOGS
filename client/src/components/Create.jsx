@@ -190,7 +190,7 @@ export default function Create(){
     }
 
     return (
-        <div>
+        <div className='flex-center-container'>
             
             <form autoComplete="off" className='msform' onSubmit={(e)=>{handleSubmit(e)}}>
                 <fieldset>

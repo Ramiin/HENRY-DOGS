@@ -5,7 +5,6 @@ import LandingPage from './components/LandingPage';
 import Home from './components/Home'
 import Details from './components/Details';
 import Create from './components/Create';
-import Nav from './components/Nav';
 import Header from './components/Header';
 
 function App() {
@@ -18,7 +17,6 @@ function App() {
 
             <Route path = "/">
               <Header />
-              <Nav />
             </Route>
       </Switch>
 

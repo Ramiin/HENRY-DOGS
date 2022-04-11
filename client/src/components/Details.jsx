@@ -17,7 +17,7 @@ export default function Details(){
     let dog = useSelector(state => state.dog)
 
     return (
-
+            
             <div className='msform'>
                 <div className="details">
          
@@ -54,9 +54,10 @@ export default function Details(){
 
                               
 
-                </React.Fragment>) : 'Cargando'}
+                </React.Fragment>) : <div className="flex-center-container"><span className="loader"></span></div>}
 
                 </div>
             </div>
+          
     )
 }

@@ -1,11 +1,16 @@
 import React, { Component }from 'react';
-import paw from './../sources/paw.png';
+import { Link } from 'react-router-dom';
+import Nav from './Nav'
 
 export default class Header extends Component{
     render(){
         return (
             <div id='header'>
-                <h1>HENRY DOGS</h1> <img id= 'paw' src= {paw} alt= 'header-paw'></img>
+                <div id='logo'>
+
+                <Link to='/home'><h1>HENRY DOGS🐶💛</h1></Link>
+                </div>
+                <Nav />
             </div>
         )
     }
