@@ -9,10 +9,10 @@ module.exports = async function(dog) {
 
         if(await getDogsApi.data.length > 0) {//Revisamos que haya info en el request
             const dogsApi = await getDogsApi.data?.map(el => { //Tomamos los datos que nos interesan
-                if(el.weight.metric=== 'NaN' || el.weight.metric.slice(0,3) === 'NaN' ){ //Elimino los registros NaN que vienen de la API
+                if(el.weight.metric=== 'NaN' || el.weight.metric.slice(0,3) === 'NaN' ){ //Elimino los registros NaN que vienen de la API, si no vienen tomo los imperiales
                     return {
                         id : el.id, 
-                        weight: Math.round(el.weight.imperial.slice(0,3)/2.2), 
+                        weight: typeof el.weight.imperial.slice(0,3)*1==='number' ?  new String (Math.round(el.weight.imperial.slice(0,3)/2.2)) : new String (Math.round(el.weight.imperial.slice(-3)/2.2)), 
                         height: el.height.metric, 
                         name: el.name, 
                         life_span: el.life_span, 
@@ -22,7 +22,7 @@ module.exports = async function(dog) {
                 }
                 return {
                     id : el.id, 
-                    weight: Math.round(el.weight.imperial.slice(0,3)/2.2), 
+                    weight: el.weight.metric, 
                     height: el.height.metric, 
                     name: el.name, 
                     life_span: el.life_span, 
@@ -44,7 +44,7 @@ module.exports = async function(dog) {
                 if(el.weight.metric=== 'NaN' || el.weight.metric.slice(0,3) === 'NaN' ){ //Elimino los registros NaN que vienen de la API
                     return {
                         id : el.id, 
-                        weight: Math.round(el.weight.imperial.slice(0,3)/2.2), 
+                        weight: typeof el.weight.imperial.slice(0,3)*1==='number' ?  new String (Math.round(el.weight.imperial.slice(0,3)/2.2)) : new String (Math.round(el.weight.imperial.slice(-3)/2.2)), 
                         height: el.height.metric, 
                         name: el.name, 
                         life_span: el.life_span, 
@@ -54,7 +54,7 @@ module.exports = async function(dog) {
                 }
                 return {
                     id : el.id, 
-                    weight: Math.round(el.weight.imperial.slice(0,3)/2.2), 
+                    weight: el.weight.metric, 
                     height: el.height.metric, 
                     name: el.name, 
                     life_span: el.life_span, 
@@ -66,37 +66,6 @@ module.exports = async function(dog) {
     
         } else return getDogsApi.data
     }
-
-    // const getDogsApi = dog ? await axios.get(`https://api.thedogapi.com/v1/breeds/search?q=${dog}`) : await axios.get('https://api.thedogapi.com/v1/breeds')
-
-    // if(await getDogsApi.data.length > 0) {
-    //     const dogsApi = await getDogsApi.data?.map(el => {
-    //         if(el.weight.metric=== 'NaN' || el.weight.metric.slice(0,3) === 'NaN' ){ //Elimino los registros NaN que vienen de la API
-    //             return {
-    //                 id : el.id, 
-    //                 weight: '00', 
-    //                 height: el.height.metric, 
-    //                 name: el.name, 
-    //                 life_span: el.life_span, 
-    //                 temperament: el.temperament, 
-    //                 image: el.image
-    //             }
-    //         }
-    //         return {
-    //             id : el.id, 
-    //             weight: el.weight.metric, 
-    //             height: el.height.metric, 
-    //             name: el.name, 
-    //             life_span: el.life_span, 
-    //             temperament: el.temperament, 
-    //             image: el.image
-    //         }
-    //     })
-    //     return dogsApi;
-
-    // } else return getDogsApi.data
-
-
 
 
 }

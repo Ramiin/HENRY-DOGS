@@ -1,5 +1,5 @@
 const getDogsApi = require('./utils/getDogsApi.js') //me traigo la funcion que saca datos de la API
-const getDogsDb = require('./utils/getDogsDb.js') //me traigo la funcion que saca datos de la API
+const getDogsDb = require('./utils/getDogsDb.js') //me traigo la funcion que saca datos de la DB
 
 module.exports = async function(req, res) {
     const {name} = req.query;
