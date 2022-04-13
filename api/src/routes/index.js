@@ -12,11 +12,10 @@ const router = Router();
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
 
-// router.get('/', getDogs)
 router.get('/dogs', getDogs); //Busca todos, por query y por params
-router.get('/dog/:breedId', getDogs); // FUnciona (Obtengo raza por ID)
-router.post('/dog', postDog); //Funciona (Me escribe en DB)
-router.get('/temperament', getTemperaments); //Funciona (Busca en DB)
+router.get('/dog/:breedId', getDogs); // Obtengo raza por ID
+router.post('/dog', postDog); // Escribe en DB
+router.get('/temperament', getTemperaments); // (Busca en DB)
 
 
 

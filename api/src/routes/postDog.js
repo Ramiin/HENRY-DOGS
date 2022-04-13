@@ -16,8 +16,6 @@ module.exports = async function(req, res){
     let filteredTemps = new Set(temperament)
     let filterTemperamentsDuplicated = [...filteredTemps];
 
-    // let temperamentToSave = temperament.split(',')
-
     const dog = await Dog.create({
         weight,
         height,
@@ -27,6 +25,7 @@ module.exports = async function(req, res){
     })
 
 
+    //Buscamos en la base de datos el temperamento y lo agregamos a dog:
 for (let i = 0; i<filterTemperamentsDuplicated.length; i++){
     let temperamentDb = await Temperament.findAll({
         where:{
@@ -38,9 +37,7 @@ for (let i = 0; i<filterTemperamentsDuplicated.length; i++){
 }
 
 
-    // dog.addTemperamperament(temperamentDb)
-
-    res.status(200).json([dog])
+   res.status(200).json([dog])
 
 
 }

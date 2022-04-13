@@ -8,8 +8,7 @@ module.exports = async function(req, res) {
     if(breedId){ // ID desde params
         const infoApi = await getDogsApi();
         const infoDb = await getDogsDb();
-        const totalDogs = infoApi.concat(infoDb)
-        const dataFound = totalDogs.filter(el => el.id == breedId);
+
         //Mapeamos temps para que sean igual a la API
         infoDb.forEach(el=>{
 
@@ -17,6 +16,10 @@ module.exports = async function(req, res) {
             }
             el.dataValues.temperament = el.dataValues.temperaments.map(el => el.dataValues.name).join(', ')
         });
+
+        const totalDogs = infoApi.concat(infoDb)
+        const dataFound = totalDogs.filter(el => el.id == breedId);
+
         dataFound.length === 0 ? res.status(404).json([{error: 'No se encontraron razas con este ID'}]) : res.status(200).json(dataFound)
 
     }

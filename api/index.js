@@ -19,7 +19,7 @@
 //     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 const server = require('./src/app.js');
 const { conn } = require('./src/db.js');
-const saveTemperamentsFromApi = require('./src/routes/utils/saveTemperamentsFromApi')
+const saveTemperamentsFromApi = require('./src/routes/utils/saveTemperamentsFromApi');
 
 // Syncing all the models at once.
 conn.sync({ force: true }).then(() => {

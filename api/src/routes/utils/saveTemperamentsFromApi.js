@@ -11,8 +11,7 @@ module.exports = async function(req, res) {
         
           if(el) temperaments.push(el.split(', ')); //dividimos cada string por ', ' y se pushea ese array a temperaments, descartamos undef
 
-        // else temperaments.push('Sin datos')
-    
+     
     }) //Queda un array de arrays
 
     const listOfTemps = temperaments.flat() //aplanamos el array a un nivel 1
