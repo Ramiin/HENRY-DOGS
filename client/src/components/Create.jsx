@@ -33,6 +33,7 @@ export default function Create(){
     });
  
     const allTemperaments = useSelector(state => state.temps);
+    console.log(allTemperaments)
 
     const dispatch = useDispatch();
 
@@ -229,7 +230,13 @@ export default function Create(){
                 })}
                 </div>
                     <datalist id="suggestions">
-                        {allTemperaments && allTemperaments.map((el, i) =>{
+                        {allTemperaments && allTemperaments.sort((a, b)=>{
+                                let fa = a.name,
+                                    fb = b.name;
+                                    if(fa<fb) return -1;
+                                    if(fa>fb) return 1;
+                                    return 0;
+                            }).map((el, i) =>{
                             return <option key = {i} value={el.name} />
                         })}
                     </datalist> <br />
