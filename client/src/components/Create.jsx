@@ -33,6 +33,7 @@ export default function Create(){
     });
  
     const allTemperaments = useSelector(state => state.temps);
+    const allTemperamentsMapped = allTemperaments.map(el => el.name);
     console.log(allTemperaments)
 
     const dispatch = useDispatch();
@@ -86,6 +87,14 @@ export default function Create(){
     function addTemperamentButton(){
         let selector = document.getElementById('temperaments');
         let selectorDuplicate = {...selector}
+        if(form.temperamentToPost.includes(selectorDuplicate.value)){
+            selector.value = ''
+            return 1; //No hace nada (Solo para cortar ejecuccion)
+        }
+        if(!allTemperamentsMapped.includes(selectorDuplicate.value)){
+            selector.value = ''
+            return 1; //No hace nada (Solo para cortar ejecuccion)
+        }
         setForm(prevState => {
             return {...prevState, temperamentToPost: form.temperamentToPost.concat(selectorDuplicate.value)};
         })
