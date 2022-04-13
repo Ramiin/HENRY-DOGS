@@ -21,7 +21,7 @@ class DogCard extends Component{
             : 
             (<Link to={'./details/'+this.props.dog.id} onClick={()=> this.props.clearDog()}><div className='card'>
                                  {<img src={this.props.dog.image} alt="" className='card-image' onError={(e)=>{
-                                     console.log(e)
+                                    //  console.log(e)
                                      e.target.src=this.props.dog.image.replace('.jpg', '.png')}}/>}
                 <h3 className='card-title'>{this.props.dog.name}</h3>
                 <p className='card-info-temps'>{this.props.dog.temperament}</p>

@@ -2,14 +2,14 @@ import React, {useEffect, useState} from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { getTemperaments, getAllDogs, order, search} from '../redux/actions';
 import DogCard from './DogCard';
-import Pages from './Pages';
+import Pages from './Pages'; //Paginado
 
 export default function Home(){
 
 
 
     let dispatch = useDispatch();
-    let allBreeds = useSelector(state => state.dogs)
+    let allBreeds = useSelector(state => state.dogs) //Perros mostrados en las cards
     let temperaments = useSelector(state => state.temps)
     let [currentPage, setCurrentPage] = useState(1);
         let dogsInPage = 8;
@@ -24,8 +24,8 @@ export default function Home(){
     const lastIndex = currentPage*dogsInPage
     const firstIndex = lastIndex - dogsInPage
     const currentDogs = function(){
-        if (allBreeds.length===0) return allBreeds;
-        else return allBreeds?.slice(firstIndex, lastIndex)
+        if (allBreeds.length===0) return allBreeds; //Si no hay dogs para mostrar
+        else return allBreeds?.slice(firstIndex, lastIndex) //Dividimos el array original con los perros a mostrar
     }()
  
     const paginado = (num) => {
@@ -36,16 +36,16 @@ export default function Home(){
         dispatch(getTemperaments())
         dispatch(getAllDogs())
   
-    }, [dispatch])
+    }, [dispatch]);
     
-
+//Para manejar el orden
     function handleSelectAll(e){
 
         if(e.target.name==='temperaments'){
             setOrders(prevState =>{
                 return {...prevState, temperament: e.target.value}
             }) 
-            dispatch(order({...orders, temperament: e.target.value}))
+            dispatch(order({...orders, temperament: e.target.value})) //dispatch con el objeto de los ordenes
 
         }
         if(e.target.name==='breeds'){
@@ -56,7 +56,7 @@ export default function Home(){
             setOrders({...orders, order: e.target.value})
             dispatch(order({...orders, order: e.target.value}))
         } 
-            setCurrentPage(1)
+            setCurrentPage(1) //para setear siempre la pagina a 1
         }
 
         function handleSearchSubmit(e){
@@ -73,7 +73,7 @@ export default function Home(){
             <div className="searchbar-container">
 
                 <h3 className='fs-subtitle' style={{margin:'1px'}}>FILTRAR POR:</h3>
-
+{/* Orden temperamentos */}
                 <div className="select">
                 <select name="temperaments" onChange={handleSelectAll}>
                     <option value="" selected disabled hidden>Temperamento:</option>
@@ -83,7 +83,7 @@ export default function Home(){
                     })}
                 </select>
                 </div>
-                
+{/* Orden origen */}
                 <div className="select"> 
                 <select name="breeds"  onChange={handleSelectAll}>
                     <option value="" selected disabled hidden>Origen:</option>
@@ -93,6 +93,7 @@ export default function Home(){
                     
                 </select>
                     </div>
+{/* Orden en especifico */}
                 <div className="select">
                 <select name="order"  onChange={handleSelectAll}>
                     <option value="" selected disabled hidden>Ordenado:</option>
@@ -106,31 +107,32 @@ export default function Home(){
                 </select>
                 </div>
                 </div>
-                
+{/* Searchbar */}
                 <div className='searchbar-container'>
             <form onSubmit={handleSearchSubmit}>
                     <input type="text" name='searching' autoComplete='off' placeholder='Buscar por nombre' />
                     <input type='submit' value='🔍'/>               
                     </form>
             </div>
-
+{/* Button recargar */}
             <div className='searchbar-container'>
-            <form onSubmit={handleSearchSubmit}>
+            
                     <button onClick={()=>{dispatch(getAllDogs())}}>CARGAR TODO</button>              
-                    </form>
+           
             </div>
                     
             </div>
 
-
+{/* //Renderizado de paginado: */}
             <Pages 
-                allBreeds = {allBreeds?.length}
+                allBreeds = {allBreeds?.length} //Los perros que tengo en ese momento
                 dogsInPage = {dogsInPage}
-                paginado ={paginado} actualPage={currentPage}/>
+                paginado ={paginado} 
+                actualPage={currentPage}/>
             </div>
 
             
-
+{/* Renderizado de cards */}
                     <div className="cards-container"> 
 
                     {currentDogs?.length>0 ? currentDogs.map((el, i) => <DogCard dog = {el} key ={i}/>) : <span className="loader"></span>}

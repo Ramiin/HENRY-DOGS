@@ -1,5 +1,5 @@
 import React from 'react'
-import './Global.css';
+import './Global.css'; //CSS Puro
 import { Route, Switch } from 'react-router-dom';
 import LandingPage from './components/LandingPage';
 import Home from './components/Home'
