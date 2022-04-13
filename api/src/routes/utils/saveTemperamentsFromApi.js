@@ -6,25 +6,22 @@ module.exports = async function(req, res) {
 
     let temperaments =  []
     const allDogs = await getDogsApi();
-    const mapTemperaments = allDogs.map(el => el.temperament);
+    const mapTemperaments = allDogs.map(el => el.temperament); //tenemos un array de strings
     mapTemperaments.forEach(el=> {
         
-        if(el) temperaments.push(el.split(', '));
+          if(el) temperaments.push(el.split(', ')); //dividimos cada string por ', ' y se pushea ese array a temperaments, descartamos undef
+
         // else temperaments.push('Sin datos')
     
-    }) //Sacamos los que tienen temperamento undefined
+    }) //Queda un array de arrays
 
     const listOfTemps = temperaments.flat() //aplanamos el array a un nivel 1
     const totalTemps = [...new Set(listOfTemps)] //eliminamos duplicados
-    // totalTemps.map(el => {
-    //         Temperament.create({ name: el
-    //             });
-    // })
+
 
       totalTemps.forEach(el =>{
         
-        // Temperament.create({ name: el
-        //                 });
+     
        Temperament.findOrCreate({
             where: {
                 name: el
@@ -33,8 +30,6 @@ module.exports = async function(req, res) {
 
     })
 
-    // res.json('Done')
-
-}
+  }
 
 

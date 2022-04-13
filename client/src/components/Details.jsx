@@ -46,11 +46,11 @@ export default function Details(){
                     </tr>
                     <tr>
                         <td style={{textAlign:'right', fontWeight:'bold'}}>Peso:</td>
-                        <td style={{textAlign:'left'}}>{dog[0].weight}</td>
+                        <td style={{textAlign:'left'}}>{dog[0].weight} KG</td>
                     </tr>
                     <tr>
                         <td style={{textAlign:'right', fontWeight:'bold'}}>Altura:</td>
-                        <td style={{textAlign:'left'}}>{dog[0].height}</td>
+                        <td style={{textAlign:'left'}}>{dog[0].height} CM</td>
                     </tr>
                     <tr>
                         <td style={{textAlign:'right', fontWeight:'bold'}}>Longevidad:</td>

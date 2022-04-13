@@ -27,7 +27,7 @@ conn.sync({ force: true }).then(() => {
 
 
   server.listen(3001, () => {
-    saveTemperamentsFromApi().then(data => console.log('Temperaments from API saved (./index.js)'))
+    saveTemperamentsFromApi().then(() => console.log('Temperaments from API saved (./index.js)'))
     console.log('%s listening at 3001'); // eslint-disable-line no-console
   });
 });

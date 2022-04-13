@@ -4,15 +4,15 @@ module.exports = async function(dog) {
 
     let getDogsApi;
 
-    if(dog){
+    if(dog){ //Revisamos si buscamos un perro en especifico
         getDogsApi = await axios.get(`https://api.thedogapi.com/v1/breeds/search?q=${dog}`)
 
-        if(await getDogsApi.data.length > 0) {
-            const dogsApi = await getDogsApi.data?.map(el => {
+        if(await getDogsApi.data.length > 0) {//Revisamos que haya info en el request
+            const dogsApi = await getDogsApi.data?.map(el => { //Tomamos los datos que nos interesan
                 if(el.weight.metric=== 'NaN' || el.weight.metric.slice(0,3) === 'NaN' ){ //Elimino los registros NaN que vienen de la API
                     return {
                         id : el.id, 
-                        weight: '00', 
+                        weight: Math.round(el.weight.imperial.slice(0,3)/2.2), 
                         height: el.height.metric, 
                         name: el.name, 
                         life_span: el.life_span, 
@@ -22,7 +22,7 @@ module.exports = async function(dog) {
                 }
                 return {
                     id : el.id, 
-                    weight: el.weight.metric, 
+                    weight: Math.round(el.weight.imperial.slice(0,3)/2.2), 
                     height: el.height.metric, 
                     name: el.name, 
                     life_span: el.life_span, 
@@ -44,7 +44,7 @@ module.exports = async function(dog) {
                 if(el.weight.metric=== 'NaN' || el.weight.metric.slice(0,3) === 'NaN' ){ //Elimino los registros NaN que vienen de la API
                     return {
                         id : el.id, 
-                        weight: '00', 
+                        weight: Math.round(el.weight.imperial.slice(0,3)/2.2), 
                         height: el.height.metric, 
                         name: el.name, 
                         life_span: el.life_span, 
@@ -54,7 +54,7 @@ module.exports = async function(dog) {
                 }
                 return {
                     id : el.id, 
-                    weight: el.weight.metric, 
+                    weight: Math.round(el.weight.imperial.slice(0,3)/2.2), 
                     height: el.height.metric, 
                     name: el.name, 
                     life_span: el.life_span, 
