@@ -34,7 +34,6 @@ export default function Create(){
  
     const allTemperaments = useSelector(state => state.temps);
     const allTemperamentsMapped = allTemperaments.map(el => el.name);
-    console.log(allTemperaments)
 
     const dispatch = useDispatch();
 
@@ -44,7 +43,7 @@ export default function Create(){
 
     function handleFields(e){
 
-        if(e.target.name==='temperament'){
+        if(e.target.name==='temperament'){ //Me quita los errores del temperament
             setErrors(prevState => {
                 return {...prevState, [e.target.name]: ''}
             })
