@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
-import {getAllDogs} from '../redux/actions'
+import {getAllDogs, clearDog} from '../redux/actions'
 
 
 class DogCard extends Component{
@@ -19,8 +19,10 @@ class DogCard extends Component{
                 <p className='card-info-weight'><Link to ='./home'><button className = 'back-button' onClick={()=>{this.props.getAllDogs()}}>Regresar</button></Link> </p>
             </div>) 
             : 
-            (<Link to={'./details/'+this.props.dog.id}><div className='card'>
-                                 {<img src={this.props.dog.image} alt="" className='card-image'/>}
+            (<Link to={'./details/'+this.props.dog.id} onClick={()=> this.props.clearDog()}><div className='card'>
+                                 {<img src={this.props.dog.image} alt="" className='card-image' onError={(e)=>{
+                                     console.log(e)
+                                     e.target.src=this.props.dog.image.replace('.jpg', '.png')}}/>}
                 <h3 className='card-title'>{this.props.dog.name}</h3>
                 <p className='card-info-temps'>{this.props.dog.temperament}</p>
                 <p className='card-info-weight'>{this.props.dog.weight + ' KG'} </p>
@@ -30,6 +32,6 @@ class DogCard extends Component{
     }
 }
 
-export const mapDispatchToProps = { getAllDogs }
+export const mapDispatchToProps = { getAllDogs, clearDog }
 
 export default connect(null, mapDispatchToProps)(DogCard)

@@ -15,9 +15,22 @@ export default function Details(){
     }, [dispatch, id])
 
     let dog = useSelector(state => state.dog)
-
-    return (
+    console.log(dog)
+    if(dog.error){
+        return (
             
+            <div className='msform'>
+                <div className="details">
+         
+            <div className="flex-center-container"><p>NO SE HA ENCONTRADO INFORMACIÓN ADICIONAL</p></div>
+
+                </div>
+            </div>
+          
+    )
+    }
+    return (
+            <div className='flex-center-container'>
             <div className='msform'>
                 <div className="details">
          
@@ -57,6 +70,8 @@ export default function Details(){
                 </React.Fragment>) : <div className="flex-center-container"><span className="loader"></span></div>}
 
                 </div>
+            </div>
+
             </div>
           
     )

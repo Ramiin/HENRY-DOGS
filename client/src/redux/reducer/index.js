@@ -36,6 +36,11 @@ const rootReducer = (state = initialState, action) => {
                 ...state,
                  dogs: action.payload
                     }
+        case 'CLEAR_DOG':
+              return {
+                  ...state,
+                   dog: []
+                      }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////>>>>>> START>ORDER
         case 'ORDER':

@@ -15,7 +15,16 @@ export const getDog = (id) =>{
         return axios.get(`http://localhost:3001/dog/${id}`)
         .then(json => {
             dispatch({type: 'GET_DOG', payload: json.data})
-        })
+        }).catch(err => {
+            dispatch({type: 'GET_DOG', payload: {error: 'No se ha encontrado informacion adicional'}})
+        }
+        )
+    }
+}
+
+export const clearDog = () =>{
+    return (dispatch) =>{
+        dispatch({type: 'CLEAR_DOG'})
     }
 }
 
