@@ -176,7 +176,7 @@ a {
   cursor: default;
 }
  
-@media screen and (min-width: 600px) {
+@media screen and (min-width: 200px) {
   .nav li {
     border-bottom: none;
     height: 50px;
@@ -450,7 +450,7 @@ font-size: 13px;
 }
 
 .msform {
-	width: 600px;
+	width: 100%;
   max-width: 600px;
 	margin: auto;
 	text-align: center;
@@ -737,3 +737,106 @@ font-size: 13px;
     transform: scale(1);
   }
 }
+
+
+@media only screen and (max-width: 1037px) {
+.flex-inline{
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content:center;
+}
+#welcome-container{
+  margin: 10px;
+  align-items: center;
+  justify-content: center;
+}
+#landing-page{
+  justify-content: center;
+}
+}
+
+@media only screen and (max-width: 773px) {
+  .nav ul{
+    margin:0px;
+  }
+}
+
+@media only screen and (max-width: 734px) {
+  .select{
+    display: block;
+    margin: 5px;
+  }
+  #logo{
+    flex:none;
+    margin: 5px 10px
+  }
+#header h1{
+  font-size: 1.5rem;
+}
+
+
+  }
+
+  @media only screen and (max-width: 700px) {
+
+    .paginado-container{
+      display: flex;
+      flex-wrap: wrap;
+      min-height: 75px;
+      min-width: 90%;
+      align-items:flex-start;
+      justify-items:center;
+    }
+    
+    .paginas{
+      display:flex;
+      flex-wrap: wrap;
+    }
+  
+    }
+
+  @media only screen and (max-width: 660px) {
+
+    .searchbar-container{
+    flex-wrap: wrap;
+    flex-direction: column;
+    min-width: 88%;
+
+   } 
+   .searchbar-container button{
+    min-height: 30px;
+    min-width: 98%;
+  
+   } 
+   .searchbar-container input[type=text]{
+     min-width: 100%;
+   }
+   .fs-subtitle h3{
+     display:block;
+   }
+ .temp-input{
+   width: 60% !important;
+ }
+ .nav a{
+  font-size: 12px;
+}
+#header h1{
+  font-size: 1rem;
+}
+#header{
+  height: 6vh;
+}
+
+    }
+
+
+
+    @media only screen and (max-width: 430px) {
+      #welcome-container h1{
+        font-size: 50px;
+      }
+      #landing-button{
+        font-size: 19px;
+      }
+      }
+
