@@ -738,6 +738,30 @@ font-size: 13px;
   }
 }
 
+/* FOOTER */
+.footer{
+  display:flex;
+  align-items: center;
+  justify-content:center;
+  flex-direction: column;
+  width: 100%;
+  margin: 20px;
+  color: rgba(138, 138, 138, 0.55);
+  line-height:15px;
+  font-size: 14px;
+  text-align: center;
+}
+.footer img {
+  height: 25px;
+  opacity: .3;
+  transition: 300ms;
+  margin: 0px;
+
+}   
+.footer img:hover{
+  opacity: .8;
+}
+
 
 @media only screen and (max-width: 1037px) {
 .flex-inline{

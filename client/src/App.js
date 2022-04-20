@@ -7,6 +7,7 @@ import Details from './components/Details';
 import Create from './components/Create';
 import Header from './components/Header';
 import Favorites from './components/Favorites';
+import Footer from './components/Footer';
 
 function App() {
   return (
@@ -22,19 +23,28 @@ function App() {
       </Switch>
 
             <Route exact path = '/home'>
-              <Home />              
+              <Home />    
+              <Footer />          
             </Route>
 
             <Route exact path ='/details/:id'>
               <Details />
+              <Footer />
             </Route>
 
             <Route exact path='/create'>
               <Create />
+              <Footer />
             </Route>
             <Route exact path='/favorites'>
               <Favorites />
+              <Footer />
             </Route>
+
+           
+            
+            
+            
         
     </React.Fragment>
 
