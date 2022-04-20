@@ -6,6 +6,7 @@ import Home from './components/Home'
 import Details from './components/Details';
 import Create from './components/Create';
 import Header from './components/Header';
+import Favorites from './components/Favorites';
 
 function App() {
   return (
@@ -30,6 +31,9 @@ function App() {
 
             <Route exact path='/create'>
               <Create />
+            </Route>
+            <Route exact path='/favorites'>
+              <Favorites />
             </Route>
         
     </React.Fragment>

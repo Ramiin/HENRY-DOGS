@@ -28,6 +28,7 @@ export const clearDog = () =>{
     }
 }
 
+
 export const getTemperaments = () =>{
     return (dispatch)=> fetch('http://localhost:3001/temperament')
     .then(data => data.json())
@@ -61,4 +62,16 @@ export const search = (string) => {
         console.log(el.error)
     })
 
+}
+
+export const addFavorite = (dog)=> {
+    return (dispatch) =>{
+        dispatch({type: 'ADD_FAVORITE', payload: dog})
+    }
+}
+
+export const deleteFavorite = (dog)=> {
+    return (dispatch) =>{
+        dispatch({type: 'DELETE_FAVORITE', payload: dog})
+    }
 }

@@ -148,10 +148,10 @@ a {
   background-color: #444;
   text-align: center;
   padding: 0;
-  margin: 0 100px;
+  margin: 0 30px;
 }
 .nav li {
-  width: 50%;
+  width: 33.33%;
   border-bottom: 1px solid #888;
   font-size: 16px!important;
   line-height: 40px;
@@ -640,3 +640,100 @@ font-size: 13px;
     transform: rotate(-360deg);
   }
 }  
+
+/* FAV HEADER */
+
+.favs h1 {
+  text-align: center;
+  text-transform: uppercase;
+  padding-bottom: 5px;
+  position: relative;
+  padding: 0;
+  margin: 0;
+  font-weight: 300;
+  font-size: 20px;
+  color: #080808;
+  -webkit-transition: all 0.4s ease 0s;
+  -o-transition: all 0.4s ease 0s;
+  transition: all 0.4s ease 0s;
+
+}
+.favs h1:before {
+  width: 28px;
+  height: 5px;
+  display: block;
+  content: "";
+  position: absolute;
+  bottom: -2.5px;
+  left: 50%;
+  margin-left: -14px;
+  background-color: #23b499;
+}
+.favs h1:after {
+  width: 100px;
+  height: 1px;
+  display: block;
+  content: "";
+  position: relative;
+  margin-top: 25px;
+  left: 50%;
+  margin-left: -50px;
+  background-color: #23b499;
+}
+
+/* LIKED BUTTON */
+
+.heart-like-button {
+  position: absolute;
+  width: 40px;
+  height: 32.5px;
+  margin-top: -150px;
+  margin-left: 245px;
+}
+.heart-like-button:before {
+  position: absolute;
+  top: 0;
+  left: 9px;
+  transform: rotate(-45deg);
+  transform-origin: 0 100%;
+  width: 10px;
+  height: 15.25px;
+  border-radius: 40px 40px 0 0;
+  background-color: #ccc;
+  content: "";
+  cursor: pointer;
+  transition: background .4s;
+}
+.heart-like-button:after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: rotate(45deg);
+  transform-origin :100% 100%;
+  width: 10px;
+  height: 15.25px;
+  border-radius: 40px 40px 0 0;
+  background-color: #ccc;
+  content: "";
+  cursor: pointer;
+  transition: background .4s;
+}
+
+.heart-like-button.liked::before,
+.heart-like-button.liked::after {
+  background-color: #ff0048;
+}
+.heart-like-button.liked {
+  animation: liked .4s ease;
+}
+@keyframes liked {
+  0% {
+    transform: scale(.8);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}

@@ -2,7 +2,8 @@ const initialState = {
     dogs: [],
     dog: [],
     temps: [],
-    totalDogs:[]
+    totalDogs:[],
+    favs: []
    
 };
 
@@ -41,6 +42,19 @@ const rootReducer = (state = initialState, action) => {
                   ...state,
                    dog: []
                       }
+
+        case 'ADD_FAVORITE':
+            return {
+                ...state,
+                favs: state.favs.concat(action.payload)
+            }
+
+        case 'DELETE_FAVORITE':
+
+            return {
+                ...state,
+                favs: state.favs.filter(el=> el.id!==action.payload)
+            }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////>>>>>> START>ORDER
         case 'ORDER':

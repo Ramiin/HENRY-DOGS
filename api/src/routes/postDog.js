@@ -37,7 +37,7 @@ for (let i = 0; i<filterTemperamentsDuplicated.length; i++){
 }
 
 
-   res.status(200).json([dog])
+   return res.status(200).json([dog])
 
 
 }

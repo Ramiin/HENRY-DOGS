@@ -123,6 +123,15 @@ export default function Home(){
                     
             </div>
 
+                        {/* <div className='searchbar-container'>
+            
+                    <button onClick={()=>{dispatch(getAfricans())}}>AFRICAN</button>              
+           
+            </div> */}
+                    
+           
+
+
 {/* //Renderizado de paginado: */}
             <Pages 
                 allBreeds = {allBreeds?.length} //Los perros que tengo en ese momento

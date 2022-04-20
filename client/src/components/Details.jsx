@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getDog }from '../redux/actions';
 
@@ -8,6 +8,7 @@ export default function Details(){
    
     let {id} = useParams();
     let dispatch = useDispatch();
+    let history = useHistory();
   
 
     useEffect(()=>{
@@ -63,8 +64,11 @@ export default function Details(){
                     
                     </tbody>
                     </table>
-            
 
+                    <br />
+                    
+            
+                    <button className='back-button'onClick={() => history.goBack()}>Regresar</button>
                               
 
                 </React.Fragment>) : <div className="flex-center-container"><span className="loader"></span></div>}

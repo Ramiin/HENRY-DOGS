@@ -9,7 +9,7 @@ export default class Nav extends Component{
             <ul>
               <li><NavLink to = '/home' > INICIO </NavLink></li>
               <li><NavLink to = '/create' > CREAR RAZA </NavLink></li>
-              {/* <li><NavLink to = '/about' >FAVORITOS</NavLink></li> */}
+              <li><NavLink to = '/favorites' >FAVORITOS</NavLink></li>
             </ul>
           </div>
           </React.Fragment>

@@ -1,16 +1,45 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
-import {getAllDogs, clearDog} from '../redux/actions'
+import {getAllDogs, clearDog, addFavorite, deleteFavorite} from '../redux/actions'
 
 
 class DogCard extends Component{
+
+    handleLikes = (e) =>{
+
+        // console.log(e.target.classList)
+        if (e.target.classList.contains('liked')){
+            this.props.deleteFavorite(this.props.dog.id)
+            // e.target.classList.remove('liked');
+            ///Quitar de la lista de favs
+        }else {
+            this.props.addFavorite(this.props.dog)
+            // e.target.classList.add('liked')
+            //agregar a la lista de favs
+            
+        }
+
+                // button.addEventListener("click", () => {
+                // if (button.classList.contains("liked")) {
+                //     button.classList.remove("liked");
+                // } else {
+                //     button.classList.add("liked");
+                // }
+                // });
+    }
+
     render(){
+
+      
+
+
         return (
             <React.Fragment>
 
                	
-               
+
+
             {this.props.dog.error ? 
             
             (<div className='card'>
@@ -19,19 +48,25 @@ class DogCard extends Component{
                 <p className='card-info-weight'><Link to ='./home'><button className = 'back-button' onClick={()=>{this.props.getAllDogs()}}>Regresar</button></Link> </p>
             </div>) 
             : 
-            (<Link to={'./details/'+this.props.dog.id} onClick={()=> this.props.clearDog()}><div className='card'>
-                                 {<img src={this.props.dog.image} alt="" className='card-image' onError={(e)=>{
+            (<div className='card'>
+                
+                <Link to={'./details/'+this.props.dog.id} onClick={()=> this.props.clearDog()}>{<img src={this.props.dog.image} alt="" className='card-image' onError={(e)=>{
                                     //  console.log(e)
                                      e.target.src=this.props.dog.image.replace('.jpg', '.png')}}/>}
                 <h3 className='card-title'>{this.props.dog.name}</h3>
                 <p className='card-info-temps'>{this.props.dog.temperament}</p>
                 <p className='card-info-weight'>{this.props.dog.weight + ' KG'} </p>
-            </div></Link>)}
+                </Link>
+                <div className={this.props.favorites.map(el=> el.id).includes(this.props.dog.id) ? "heart-like-button liked" : "heart-like-button"} onClick= {this.handleLikes}></div>
+            </div>)}
             </React.Fragment>
         )
     }
 }
 
-export const mapDispatchToProps = { getAllDogs, clearDog }
+export const mapDispatchToProps = { getAllDogs, clearDog, addFavorite, deleteFavorite };
+function mapStateToProps(state){
+    return {favorites: state.favs}
+}
 
-export default connect(null, mapDispatchToProps)(DogCard)
+export default connect(mapStateToProps, mapDispatchToProps)(DogCard)
