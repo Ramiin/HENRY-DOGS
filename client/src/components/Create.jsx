@@ -33,7 +33,7 @@ export default function Create(){
     });
  
     const allTemperaments = useSelector(state => state.temps);
-    const allTemperamentsMapped = allTemperaments.map(el => el.name);
+    const allTemperamentsMapped = allTemperaments?.map(el => el.name);
 
     const dispatch = useDispatch();
 

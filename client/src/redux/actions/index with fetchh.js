@@ -2,9 +2,10 @@ import axios from 'axios';
 
 export const getAllDogs = () => {
     return function(dispatch) {
-        return axios.get(`/dogs`)
+        return fetch(`/dogs`)
+          .then(response => response.json())
           .then(json => {
-            dispatch({ type: 'GET_ALL_DOGS', payload: json.data });
+            dispatch({ type: 'GET_ALL_DOGS', payload: json });
           });
       };
 };
@@ -29,9 +30,10 @@ export const clearDog = () =>{
 
 
 export const getTemperaments = () =>{
-    return (dispatch)=> axios.get('/temperament')
-    .then(json =>{
-        dispatch({type: 'GET_TEMPERAMENTS', payload: json.data})
+    return (dispatch)=> fetch('/temperament')
+    .then(data => data.json())
+    .then(data =>{
+        dispatch({type: 'GET_TEMPERAMENTS', payload: data})
     })
 }
 
@@ -52,9 +54,10 @@ export const order = (orders) => {
 }
 
 export const search = (string) => {
-    return (dispatch) =>  axios.get(`/dogs?name=${string}`)
-     .then(json => {
-      dispatch({ type: 'SEARCH', payload: json.data });
+    return (dispatch) =>  fetch(`/dogs?name=${string}`)
+    .then(response => response.json())
+    .then(json => {
+      dispatch({ type: 'SEARCH', payload: json });
     }).catch(el =>{
         console.log(el.error)
     })
