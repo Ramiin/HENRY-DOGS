@@ -442,6 +442,9 @@ font-size: 13px;
 /* FORM  --------------------------------------------------------------------------------->*/
 
 /*form styles*/
+.half {
+  width: 37%!important;
+}
 
 .form-error{
   margin: -5px 0px 7px 0px;
@@ -481,9 +484,7 @@ font-size: 13px;
 	color: #2C3E50;
 	font-size: 13px;
 }
-.half {
-  width: 48.2% !important;
-}
+
 .temp-input {
   width: 90% !important;
 }
@@ -839,7 +840,7 @@ font-size: 13px;
      display:block;
    }
  .temp-input{
-   width: 60% !important;
+   width: 70% !important;
  }
  .nav a{
   font-size: 12px;
