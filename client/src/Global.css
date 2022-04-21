@@ -745,7 +745,7 @@ font-size: 13px;
   justify-content:center;
   flex-direction: column;
   width: 100%;
-  margin: 20px;
+  margin: 20px 0px;
   color: rgba(138, 138, 138, 0.55);
   line-height:15px;
   font-size: 14px;
