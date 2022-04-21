@@ -811,6 +811,8 @@ font-size: 13px;
       min-width: 90%;
       align-items:flex-start;
       justify-items:center;
+      justify-content:center;
+      align-content: center;
     }
     
     .paginas{
