@@ -49,7 +49,7 @@ module.exports = async function(dog) {
                         name: el.name, 
                         life_span: el.life_span, 
                         temperament: el.temperament, 
-                        image: el.image.url
+                        image: el.reference_image_id ? 'https://cdn2.thedogapi.com/images/'+el.reference_image_id+'.jpg' : 'http://images.squarespace-cdn.com/content/v1/570ee2b820c6473af089812c/8be4407d-8a0e-4c30-a39b-b753b89ae52f/Image__5_-removebg-preview.png'
                     }
                 }
                 return {
@@ -59,7 +59,7 @@ module.exports = async function(dog) {
                     name: el.name, 
                     life_span: el.life_span, 
                     temperament: el.temperament, 
-                    image: el.image.url
+                    image: el.reference_image_id ? 'https://cdn2.thedogapi.com/images/'+el.reference_image_id+'.jpg' : 'http://images.squarespace-cdn.com/content/v1/570ee2b820c6473af089812c/8be4407d-8a0e-4c30-a39b-b753b89ae52f/Image__5_-removebg-preview.png'
                 }
             })
             return dogsApi;
